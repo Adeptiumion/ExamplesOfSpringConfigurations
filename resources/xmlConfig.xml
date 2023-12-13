@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <bean id="someDog" class="org.example.Dog">
+        <constructor-arg value="true"/>
+    </bean>
+
+    <bean id="someCat" class="org.example.Cat"/>
+
+    <bean id="somePersonWithConstructor" class="org.example.Person">
+        <constructor-arg ref="someDog"/>
+    </bean>
+
+    <bean id="somePersonWithSetter" class="org.example.Person">
+        <property name="petOfPerson" ref="someCat"/>
+    </bean>
+
+    <bean id="somePersonWithSetterAndValues" class="org.example.Person">
+        <property name="petOfPerson" ref="someCat"/>
+        <property name="age" value="22"/>
+        <property name="name" value="Adept"/>
+    </bean>
+
+    <context:property-placeholder location="classpath:propertiesOfFSA.properties" />
+
+    <bean id="somePersonWithSetterAndValuesFromProperties" class="org.example.Person">
+        <property name="petOfPerson" ref="someCat"/>
+        <property name="age" value="${adeptAge}"/>
+        <property name="name" value="${person.name}"/>
+    </bean>
+
+
+
+
+
+
+
+</beans>
